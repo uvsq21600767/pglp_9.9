@@ -16,8 +16,7 @@ public class CircleTest {
 
     @Test(expected = RadiusException.class)
     public void TestCircleRadiusException() throws RadiusException, EmptyObjectException {
-        Point p = new Point();
-        c = new Circle(p,-1);
+        c = new Circle(new Point(),-1);
     }
 
     @Test(expected = EmptyObjectException.class)

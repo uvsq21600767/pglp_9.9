@@ -53,6 +53,7 @@ public class Circle extends Shape<Circle> {
     /**
      * Setter of Center
      * @param origin : the new center of the circle
+     * @throws EmptyObjectException if origin is null
      */
     public void setCenter(Point origin) throws EmptyObjectException {
         if(origin == null) {
@@ -65,6 +66,7 @@ public class Circle extends Shape<Circle> {
     /**
      * Setter of radius
      * @param radius : the new radius of the circle
+     * @throws RadiusException if radius < 0
      */
     public void setRadius(int radius) throws  RadiusException{
         if(radius < 0) throw new RadiusException();
@@ -80,14 +82,15 @@ public class Circle extends Shape<Circle> {
      */
     @Override
     public void translate(int x, int y) {
-        this.center.setX(x);
-        this.center.setY(y);
+        this.center.setX(this.center.getX() + x);
+        this.center.setY(this.center.getY() + y);
     }
 
     /**
      * Test if two circles are at the same position and have the same radius
      * @param comp : the comparison circle
      * @return true if the 2 circles have the same position and the same radius, false if not
+     * @throws EmptyObjectException if comp is null
      */
     @Override
     public boolean isEqual(Circle comp) throws EmptyObjectException{

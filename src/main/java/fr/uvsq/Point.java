@@ -62,6 +62,7 @@ public class Point {
      * Test if 2 circle are at the same position
      * @param comp : comparison circle
      * @return true if the 2 circles are at the same position, false if not
+     * @throws EmptyObjectException if comp is null
      */
     public boolean isEqual(Point comp) throws EmptyObjectException {
         if(comp == null) {

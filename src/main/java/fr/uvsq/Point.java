@@ -18,10 +18,14 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-    
-    Point(Point origin) {
-        this.x = origin.getX();
-        this.y = origin.getY();
+
+    Point(Point origin) throws EmptyObjectException {
+        if(origin == null) {
+            throw new EmptyObjectException();
+        } else {
+            this.x = origin.getX();
+            this.y = origin.getY();
+        }
     }
     /**
      * Getter of x
@@ -52,5 +56,23 @@ public class Point {
      */
     public void setY(int newY) {
         this.y = newY;
+    }
+
+    /**
+     * Test if 2 circle are at the same position
+     * @param comp : comparison circle
+     * @return true if the 2 circles are at the same position, false if not
+     */
+    public boolean isEqual(Point comp) throws EmptyObjectException {
+        if(comp == null) {
+            throw new EmptyObjectException();
+        } else {
+            if(this.getX() != comp.getX()) {
+                return false;
+            } else if(this.getY() != comp.getY()) {
+                return false;
+            }
+            return true;
+        }
     }
 }

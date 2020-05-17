@@ -16,7 +16,7 @@ public class TriangleTest {
 
     @Test(expected = EmptyObjectException.class)
     public void TestTriangleEmptyObjectException() throws EmptyObjectException{
-        t = new Triangle(null, null, null);
+        t = new Triangle(null, null, null, "Triangle");
     }
 
     @Test
@@ -69,7 +69,7 @@ public class TriangleTest {
 
     @Test
     public void TestisEqual() throws EmptyObjectException{
-        Triangle t2 = new Triangle(new Point(4, 8), new Point(8, 1), new Point(0, 15));
+        Triangle t2 = new Triangle(new Point(4, 8), new Point(8, 1), new Point(0, 15), "Triangle");
         t.setP1(t2.getP1());
         t.setP2(t2.getP2());
         t.setP3(t2.getP3());

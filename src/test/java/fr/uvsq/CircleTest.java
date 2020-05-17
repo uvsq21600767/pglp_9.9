@@ -16,12 +16,12 @@ public class CircleTest {
 
     @Test(expected = RadiusException.class)
     public void TestCircleRadiusException() throws RadiusException, EmptyObjectException {
-        c = new Circle(new Point(),-1);
+        c = new Circle(new Point(),-1, "Circle");
     }
 
     @Test(expected = EmptyObjectException.class)
     public void TestCircleEmptyObjectException() throws RadiusException, EmptyObjectException {
-        c = new Circle(null, 0);
+        c = new Circle(null, 0, "Circle");
     }
 
     @Test(expected = EmptyObjectException.class)
@@ -63,7 +63,7 @@ public class CircleTest {
 
     @Test
     public void TestisEqual() throws RadiusException, EmptyObjectException {
-        Circle comp = new Circle(new Point(10, 5), 10);
+        Circle comp = new Circle(new Point(10, 5), 10, "Circle");
         c.setCenter(comp.getCenter());
         c.setRadius(comp.getRadius());
 

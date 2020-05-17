@@ -15,9 +15,10 @@ public class Rectangle extends Shape<Rectangle> {
         this.bl = new Point();
         this.L = 2;
         this.H = 1;
+        this.name = "Rectangle";
     }
 
-    Rectangle(Point bl, int L, int H) throws EmptyObjectException, DimensionException {
+    Rectangle(Point bl, int L, int H, String name) throws EmptyObjectException, DimensionException {
         if(bl == null) {
             throw new EmptyObjectException();
         } else if((L < 0) || (H < 0)) {
@@ -26,6 +27,7 @@ public class Rectangle extends Shape<Rectangle> {
             this.bl = new Point(bl);
             this.L = L;
             this.H = H;
+            this.name = name;
         }
     }
 
@@ -36,6 +38,7 @@ public class Rectangle extends Shape<Rectangle> {
             this.bl = new Point(origin.getBl());
             this.L = origin.getL();
             this.H = origin.getH();
+            this.name = origin.getName();
         }
     }
 
@@ -61,6 +64,15 @@ public class Rectangle extends Shape<Rectangle> {
      */
     public int getH() {
         return this.H;
+    }
+
+    /**
+     * Getter of name
+     * @return this.name
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -100,6 +112,15 @@ public class Rectangle extends Shape<Rectangle> {
         } else {
             this.H = H;
         }
+    }
+
+    /**
+     * Setter of name
+     * @param name : the new value of name
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

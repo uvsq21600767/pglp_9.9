@@ -12,9 +12,10 @@ public class Square extends Shape<Square> {
     Square() {
         this.bl = new Point();
         this.size = 1;
+        this.name = "Square";
     }
 
-    Square(Point position, int size) throws EmptyObjectException, SizeException {
+    Square(Point position, int size, String name) throws EmptyObjectException, SizeException {
         if(position == null) {
             throw new EmptyObjectException();
         } else if(size < 0) {
@@ -22,6 +23,7 @@ public class Square extends Shape<Square> {
         } else {
             this.bl = new Point(position);
             this.size = size;
+            this.name = name;
         }
     }
 
@@ -31,6 +33,7 @@ public class Square extends Shape<Square> {
         } else {
             this.bl = new Point(origin.bl.getX(), origin.bl.getY());
             this.size = origin.getSize();
+            this.name = origin.getName();
         }
     }
 
@@ -48,6 +51,15 @@ public class Square extends Shape<Square> {
      */
     public int getSize() {
         return this.size;
+    }
+
+    /**
+     * Getter of name
+     * @return
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -74,6 +86,15 @@ public class Square extends Shape<Square> {
         } else {
             this.size = size;
         }
+    }
+
+    /**
+     * Setter of name
+     * @param name : the new value of name
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

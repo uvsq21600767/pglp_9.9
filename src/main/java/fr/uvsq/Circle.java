@@ -10,11 +10,12 @@ public class Circle extends Shape<Circle> {
     private int radius;
 
     Circle() {
+        this.name = "Circle";
         this.center = new Point();
         this.radius = 1;
     }
 
-    Circle(Point center, int radius) throws EmptyObjectException, RadiusException {
+    Circle(Point center, int radius, String name) throws EmptyObjectException, RadiusException {
         if(center == null) {
             throw new EmptyObjectException();
         } else if(radius < 0) {
@@ -22,6 +23,7 @@ public class Circle extends Shape<Circle> {
         } else {
             this.center = new Point(center);
             this.radius = radius;
+            this.name = name;
         }
     }
 
@@ -31,6 +33,7 @@ public class Circle extends Shape<Circle> {
         } else {
             this.center = new Point(origin.center.getX(), origin.center.getY());
             this.radius = origin.getRadius();
+            this.name = origin.getName();
         }
     }
 
@@ -48,6 +51,15 @@ public class Circle extends Shape<Circle> {
      */
     public int getRadius() {
         return this.radius;
+    }
+
+    /**
+     * Getter of name
+     * @return this.name
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -73,6 +85,15 @@ public class Circle extends Shape<Circle> {
         else {
             this.radius = radius;
         }
+    }
+
+    /**
+     * Setter of name
+     * @param name : the new value of name
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

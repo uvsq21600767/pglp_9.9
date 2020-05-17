@@ -15,15 +15,17 @@ public class Triangle extends Shape<Triangle> {
         this.p1 = new Point();
         this.p2 = new Point(1, 2);
         this.p3 = new Point(2, 0);
+        this.name = "Triangle";
     }
 
-    Triangle(Point p1, Point p2, Point p3) throws EmptyObjectException{
+    Triangle(Point p1, Point p2, Point p3, String name) throws EmptyObjectException{
         if(p1 == null || p2 == null || p3 == null) {
             throw new EmptyObjectException();
         } else {
             this.p1 = new Point(p1);
             this.p2 = new Point(p2);
             this.p3 = new Point(p3);
+            this.name = name;
         }
     }
 
@@ -34,6 +36,7 @@ public class Triangle extends Shape<Triangle> {
             this.p1 = new Point(origin.getP1());
             this.p2 = new Point(origin.getP2());
             this.p3 = new Point(origin.getP3());
+            this.name = origin.getName();
         }
     }
 
@@ -59,6 +62,15 @@ public class Triangle extends Shape<Triangle> {
      */
     public Point getP3(){
         return this.p3;
+    }
+
+    /**
+     * Getter of name
+     * @return
+     */
+    @Override
+    public String getName() {
+        return this.name;
     }
 
     /**
@@ -98,6 +110,15 @@ public class Triangle extends Shape<Triangle> {
         } else {
             this.p3 = new Point(p);
         }
+    }
+
+    /**
+     * Setter of name
+     * @param name : the new value of name
+     */
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

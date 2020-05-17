@@ -16,12 +16,12 @@ public class SquareTest {
 
    @Test(expected = EmptyObjectException.class)
     public void TestSquareEmptyObjectException() throws EmptyObjectException, SizeException {
-        s = new Square(null, 1);
+        s = new Square(null, 1, "Square");
    }
 
    @Test(expected = SizeException.class)
     public void TestSquareSizeException() throws EmptyObjectException, SizeException {
-        s = new Square(new Point(), -1);
+        s = new Square(new Point(), -1, "Square");
    }
 
    @Test(expected = EmptyObjectException.class)
@@ -72,8 +72,8 @@ public class SquareTest {
 
     @Test
     public void TestIsEqual() throws EmptyObjectException, SizeException {
-        s = new Square(new Point(10,5), 4);
-        Square s2 = new Square(new Point(10,5), 4);
+        s = new Square(new Point(10,5), 4, "Square");
+        Square s2 = new Square(new Point(10,5), 4, "Square");
 
         assertTrue(s.isEqual(s2));
     }

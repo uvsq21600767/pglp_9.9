@@ -60,7 +60,7 @@ public class RectangleTest {
 
     @Test
     public void TestisEqual() throws EmptyObjectException, DimensionException {
-        Rectangle r2 = new Rectangle(new Point(10, 5), 4, 7);
+        Rectangle r2 = new Rectangle(new Point(10, 5), 4, 7, "Rectangle");
         r.setL(r2.getL());
         r.setH(r2.getH());
         r.setBl(new Point(r2.getBl()));

@@ -64,7 +64,7 @@ public class RectangleTest {
         r.setL(r2.getL());
         r.setH(r2.getH());
         r.setBl(new Point(r2.getBl()));
-        
+
         assertTrue(r.isEqual(r2));
     }
 

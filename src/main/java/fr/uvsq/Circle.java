@@ -1,13 +1,15 @@
 package fr.uvsq;
 
-public class Circle extends Shape<Circle> {
+public class Circle implements Shape {
 
     /**
      * center : center of the circle
      * radius : radius of the circle
+     * name : name of the circle
      */
     private Point center;
     private int radius;
+    private String name;
 
     Circle() {
         this.name = "Circle";
@@ -57,7 +59,6 @@ public class Circle extends Shape<Circle> {
      * Getter of name
      * @return this.name
      */
-    @Override
     public String getName() {
         return this.name;
     }
@@ -91,7 +92,6 @@ public class Circle extends Shape<Circle> {
      * Setter of name
      * @param name : the new value of name
      */
-    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -113,7 +113,6 @@ public class Circle extends Shape<Circle> {
      * @return true if the 2 circles have the same position and the same radius, false if not
      * @throws EmptyObjectException if comp is null
      */
-    @Override
     public boolean isEqual(Circle comp) throws EmptyObjectException{
         if(comp == null) {
             throw new EmptyObjectException();

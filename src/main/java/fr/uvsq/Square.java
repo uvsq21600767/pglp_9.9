@@ -1,13 +1,15 @@
 package fr.uvsq;
 
-public class Square extends Shape<Square> {
+public class Square implements Shape {
 
     /**
      * bl : bottom left point of the Square
      * size : size of the square
+     * name : name of the Square
      */
     private Point bl;
     private int size;
+    private String name;
 
     Square() {
         this.bl = new Point();
@@ -57,7 +59,6 @@ public class Square extends Shape<Square> {
      * Getter of name
      * @return this.name
      */
-    @Override
     public String getName() {
         return this.name;
     }
@@ -92,7 +93,6 @@ public class Square extends Shape<Square> {
      * Setter of name
      * @param name : the new value of name
      */
-    @Override
     public void setName(String name) {
         this.name = name;
     }

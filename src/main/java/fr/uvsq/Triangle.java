@@ -1,15 +1,17 @@
 package fr.uvsq;
 
-public class Triangle extends Shape<Triangle> {
+public class Triangle implements Shape {
 
     /**
      * p1 : first point of the Triangle
      * p2 : Second point of the Triangle
      * p3 : third point of the Triangle
+     * name : name of the triangle
      */
     private Point p1;
     private Point p2;
     private Point p3;
+    private String name;
 
     Triangle() {
         this.p1 = new Point();
@@ -68,7 +70,6 @@ public class Triangle extends Shape<Triangle> {
      * Getter of name
      * @return this.name
      */
-    @Override
     public String getName() {
         return this.name;
     }
@@ -116,7 +117,6 @@ public class Triangle extends Shape<Triangle> {
      * Setter of name
      * @param name : the new value of name
      */
-    @Override
     public void setName(String name) {
         this.name = name;
     }

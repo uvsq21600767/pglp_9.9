@@ -1,15 +1,17 @@
 package fr.uvsq;
 
-public class Rectangle extends Shape<Rectangle> {
+public class Rectangle implements Shape {
 
     /**
      * bl : the bottom left point of the rectangle
      * L : the length
      * H : the height
+     * name : name of the rectangle
      */
     private Point bl;
     private int L;
     private int H;
+    private String name;
 
     Rectangle() {
         this.bl = new Point();
@@ -70,7 +72,6 @@ public class Rectangle extends Shape<Rectangle> {
      * Getter of name
      * @return this.name
      */
-    @Override
     public String getName() {
         return this.name;
     }
@@ -118,7 +119,6 @@ public class Rectangle extends Shape<Rectangle> {
      * Setter of name
      * @param name : the new value of name
      */
-    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -129,7 +129,6 @@ public class Rectangle extends Shape<Rectangle> {
         this.bl.setY(this.bl.getY() + y);
     }
 
-    @Override
     public boolean isEqual(Rectangle comp) throws EmptyObjectException {
         if(comp == null) {
             throw new EmptyObjectException();

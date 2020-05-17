@@ -55,7 +55,7 @@ public class Square extends Shape<Square> {
 
     /**
      * Getter of name
-     * @return
+     * @return this.name
      */
     @Override
     public String getName() {
@@ -78,7 +78,7 @@ public class Square extends Shape<Square> {
     /**
      * Setter of size
      * @param size : the new size of the Square
-     * @throws SizeException if size < 0
+     * @throws SizeException if size lower than 0
      */
     public void setSize(int size) throws SizeException {
         if(size < 0) {

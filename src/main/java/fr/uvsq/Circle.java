@@ -78,7 +78,7 @@ public class Circle extends Shape<Circle> {
     /**
      * Setter of radius
      * @param radius : the new radius of the circle
-     * @throws RadiusException if radius < 0
+     * @throws RadiusException if radius lower than 0
      */
     public void setRadius(int radius) throws  RadiusException{
         if(radius < 0) throw new RadiusException();

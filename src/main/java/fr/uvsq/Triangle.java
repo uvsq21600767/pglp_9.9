@@ -66,7 +66,7 @@ public class Triangle extends Shape<Triangle> {
 
     /**
      * Getter of name
-     * @return
+     * @return this.name
      */
     @Override
     public String getName() {

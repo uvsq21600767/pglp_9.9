@@ -91,7 +91,7 @@ public class Rectangle extends Shape<Rectangle> {
     /**
      * Setter of L
      * @param L : the new value of L
-     * @throws DimensionException if L < 0
+     * @throws DimensionException if L lower than 0
      */
     public void setL(int L) throws DimensionException {
         if(L < 0) {
@@ -104,7 +104,7 @@ public class Rectangle extends Shape<Rectangle> {
     /**
      * Setter of H
      * @param H : the new value of H
-     * @throws DimensionException if H < 0
+     * @throws DimensionException if H lower than 0
      */
     public void setH(int H) throws DimensionException {
         if(H < 0) {

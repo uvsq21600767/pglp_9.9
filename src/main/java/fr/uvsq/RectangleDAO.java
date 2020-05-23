@@ -2,7 +2,7 @@ package fr.uvsq;
 
 import java.sql.*;
 
-public class CircleDAO extends DAO<Circle> {
+public class RectangleDAO extends DAO<Rectangle> {
     /**
      * Setter of conn
      *
@@ -57,16 +57,17 @@ public class CircleDAO extends DAO<Circle> {
      * @throws SQLException   if error during SQL request
      */
     @Override
-    public Circle storeObj(Circle shape) throws ShapeException, SQLException {
+    public Rectangle storeObj(Rectangle shape) throws ShapeException, SQLException {
         this.connect();
         PreparedStatement sta;
 
         try {
-            sta = this.connection.prepareStatement("INSERT INTO SHAPE(Name, p1x, p1y, radius) VALUES (?, ?, ?, ?)");
+            sta = this.connection.prepareStatement("INSERT INTO SHAPE(Name, p1x, p1y, L, H) VALUES (?, ?, ?, ?, ?)");
             sta.setString(1, shape.getName());
-            sta.setInt(2, shape.getCenter().getX());
-            sta.setInt(3, shape.getCenter().getY());
-            sta.setInt(4, shape.getRadius());
+            sta.setInt(2, shape.getBl().getX());
+            sta.setInt(3, shape.getBl().getY());
+            sta.setInt(4, shape.getL());
+            sta.setInt(5, shape.getH());
             sta.execute();
         } catch (SQLException e) {
             System.out.println("Failed sql request");
@@ -114,16 +115,17 @@ public class CircleDAO extends DAO<Circle> {
      * @throws SQLException   if error during SQL request
      */
     @Override
-    public Circle updateObj(Circle shape) throws ShapeException, SQLException {
+    public Rectangle updateObj(Rectangle shape) throws ShapeException, SQLException {
         this.connect();
         PreparedStatement sta;
 
         try {
-            sta = this.connection.prepareStatement("UPDATE SHAPE SET p1x = ? , p1y = ? , radius = ? WHERE Name = ?");
-            sta.setInt(1, shape.getCenter().getX());
-            sta.setInt(2, shape.getCenter().getY());
-            sta.setInt(3, shape.getRadius());
-            sta.setString(4, shape.getName());
+            sta = this.connection.prepareStatement("UPDATE SHAPE SET p1x = ? , p1y = ? , L = ? , H = ? WHERE Name = ?");
+            sta.setInt(1, shape.getBl().getX());
+            sta.setInt(2, shape.getBl().getY());
+            sta.setInt(3, shape.getL());
+            sta.setInt(4, shape.getH());
+            sta.setString(5, shape.getName());
             sta.execute();
         } catch (SQLException e) {
             System.out.println("Failed sql request");
@@ -145,23 +147,24 @@ public class CircleDAO extends DAO<Circle> {
      * @throws SQLException         if error during SQL request
      * @throws EmptyObjectException if error during creation of the Circle
      * @throws RadiusException if error during creation of the circle
+     * @throws DimensionException if error durinr creation of the rectangle
      */
     @Override
-    public Circle searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException {
+    public Rectangle searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException {
         this.connect();
         PreparedStatement sta;
         ResultSet res;
-        Circle c;
+        Rectangle r;
 
         try {
-            sta = this.connection.prepareStatement("SELECT Name, p1x, p2y, radius FROM SHAPE WHERE Name = ?");
+            sta = this.connection.prepareStatement("SELECT Name, p1x, p2y, L, H FROM SHAPE WHERE Name = ?");
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
             System.out.println("Check execute");
             if(res.next()) {
                 Point p = new Point(res.getInt("p1x"), res.getInt("p2y"));
-                c = new Circle(p, res.getInt("radius"), res.getString("Name"));
+                r = new Rectangle(p, res.getInt("L"), res.getInt("H"), res.getString("Name"));
             } else {
                 this.closeConn();
                 throw new InvalidNameException();
@@ -174,6 +177,6 @@ public class CircleDAO extends DAO<Circle> {
         }
 
         this.closeConn();
-        return c;
+        return r;
     }
 }

@@ -3,19 +3,25 @@ package fr.uvsq;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 import java.sql.SQLException;
 
-public class CircleDAOTest {
+import static org.junit.Assert.*;
+
+public class RectangleDAOTest {
 
     private DataBase db;
-    private Circle c;
+    private Rectangle shape;
+    private Rectangle shape2;
+    private DAO<Rectangle> rectangleDAO;
 
     @Before
     public void init() throws SQLException {
         db = new DataBase();
         db.createTable();
-        c = new Circle();
+        shape = new Rectangle();
+        shape2 = new Rectangle();
+        rectangleDAO = DAOFactory.getRectangleDAO();
     }
 
     @After
@@ -25,51 +31,46 @@ public class CircleDAOTest {
 
     @Test
     public void testInsertCircle() throws SQLException, ShapeException, EmptyObjectException {
-        DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
-        Circle c2 = circleDAO.storeObj(c);
+
+        shape2 = rectangleDAO.storeObj(shape);
         db.printTableShape();
 
-        assertTrue(c.isEqual(c2));
+        assertTrue(shape.isEqual(shape2));
     }
 
     @Test(expected = ShapeException.class)
     public void testInsertSame() throws SQLException, ShapeException {
-        Circle c2 = new Circle();
-
-        DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
-        circleDAO.storeObj(c);
-        circleDAO.storeObj(c2);
+        shape2 = new Rectangle();
+        rectangleDAO.storeObj(shape);
+        rectangleDAO.storeObj(shape2);
 
         db.printTableShape();
     }
 
     @Test
     public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException {
-        DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
-        circleDAO.storeObj(c);
-        circleDAO.deletObj(c.getName());
+        rectangleDAO.storeObj(shape);
+        rectangleDAO.deletObj(shape.getName());
 
-        Circle c2 = circleDAO.storeObj(c);
-        assertTrue(c2.isEqual(c));
+        shape2 = rectangleDAO.storeObj(shape);
+        assertTrue(shape2.isEqual(shape));
     }
 
     @Test
     public void testUpdate() throws SQLException, ShapeException, EmptyObjectException {
-        DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
-        circleDAO.storeObj(c);
+        rectangleDAO.storeObj(shape);
         db.printTableShape();
-        c.setCenter(new Point(4, 7));
-        Circle c2 = circleDAO.updateObj(c);
+        shape.setBl(new Point(4, 7));
+        shape2 = rectangleDAO.updateObj(shape);
         db.printTableShape();
-        assertTrue(c2.isEqual(c));
+        assertTrue(shape2.isEqual(shape));
     }
 
     @Test
     public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException {
-        DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
-        circleDAO.storeObj(c);
-        Circle c2 = circleDAO.searchObj(c.getName());
-        assertTrue(c2.isEqual(c));
+       rectangleDAO.storeObj(shape);
+        shape2 = rectangleDAO.searchObj(shape.getName());
+        assertTrue(shape2.isEqual(shape));
     }
 
 }

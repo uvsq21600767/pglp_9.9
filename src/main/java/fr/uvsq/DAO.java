@@ -70,5 +70,5 @@ public abstract class DAO<S> {
      * @throws InvalidNameException if invalid name of the shape
      * @throws SQLException if error during SQL request
      */
-    public abstract S searchObj(String name) throws InvalidNameException, SQLException;
+    public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException;
 }

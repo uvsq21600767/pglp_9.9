@@ -44,7 +44,6 @@ public class DataBase {
     public void connect() throws SQLException {
         try {
             this.setConnection(DriverManager.getConnection(dburl));
-            System.out.println("Successful connection");
         } catch (SQLException e) {
             System.out.println("Connection failed");
             throw new SQLException("Failure : Can't connect to the DB");
@@ -103,7 +102,18 @@ public class DataBase {
             ResultSet res = req.getResultSet();
             rep = rep + "---Printing SHAPE---\n";
             while (res.next()) {
-                rep = rep + res.getObject(1) + res.getObject(2) + "\n";
+                rep = rep + res.getObject(1) + " "
+                        + res.getObject(2) + " "
+                        + res.getObject(3)  + " "
+                        + res.getObject(4) + " "
+                        + res.getObject(5) + " "
+                        + res.getObject(6) + " "
+                        + res.getObject(7) + " "
+                        + res.getObject(8) + " "
+                        + res.getObject(9 ) + " "
+                        + res.getObject(10) + " "
+                        + res.getObject(11) + "\n";
+
             }
             System.out.println(rep);
         } catch (SQLException e) {
@@ -144,6 +154,5 @@ public class DataBase {
      */
     public void closeConn() throws SQLException {
         this.connection.close();
-        System.out.println("Connection closed with success");
     }
 }

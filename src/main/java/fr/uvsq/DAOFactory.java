@@ -9,4 +9,8 @@ public class DAOFactory {
     public static DAO<Rectangle> getRectangleDAO() {
         return new RectangleDAO();
     }
+
+    public static DAO<Square> getSquareDAO() {
+        return new SquareDAO();
+    }
 }

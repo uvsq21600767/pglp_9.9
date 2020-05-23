@@ -13,4 +13,8 @@ public class DAOFactory {
     public static DAO<Square> getSquareDAO() {
         return new SquareDAO();
     }
+
+    public static DAO<Triangle> getTriangleDAO() {
+        return new TriangleDAO();
+    }
 }

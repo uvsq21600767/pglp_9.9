@@ -67,7 +67,7 @@ public class RectangleDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException {
+    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
        rectangleDAO.storeObj(shape);
         shape2 = rectangleDAO.searchObj(shape.getName());
         assertTrue(shape2.isEqual(shape));

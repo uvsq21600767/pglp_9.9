@@ -72,6 +72,7 @@ public abstract class DAO<S> {
      * @throws EmptyObjectException if error during construction of the copy
      * @throws RadiusException if error during construction of the circle
      * @throws DimensionException if error during contsruction of the rectangle
+     * @throws SizeException if erro rduring constrcution of the square
      */
-    public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException;
+    public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException;
 }

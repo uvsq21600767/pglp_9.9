@@ -154,13 +154,13 @@ public class CircleDAO extends DAO<Circle> {
         Circle c;
 
         try {
-            sta = this.connection.prepareStatement("SELECT Name, p1x, p2y, radius FROM SHAPE WHERE Name = ?");
+            sta = this.connection.prepareStatement("SELECT Name, p1x, p1y, radius FROM SHAPE WHERE Name = ?");
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
             System.out.println("Check execute");
             if(res.next()) {
-                Point p = new Point(res.getInt("p1x"), res.getInt("p2y"));
+                Point p = new Point(res.getInt("p1x"), res.getInt("p1y"));
                 c = new Circle(p, res.getInt("radius"), res.getString("Name"));
             } else {
                 this.closeConn();

@@ -65,7 +65,7 @@ public class CircleDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException {
+    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
         circleDAO.storeObj(c);
         Circle c2 = circleDAO.searchObj(c.getName());

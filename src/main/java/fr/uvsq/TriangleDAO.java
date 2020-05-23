@@ -2,7 +2,7 @@ package fr.uvsq;
 
 import java.sql.*;
 
-public class SquareDAO extends DAO<Square> {
+public class TriangleDAO extends DAO<Triangle> {
 
     /**
      * Setter of conn
@@ -58,16 +58,19 @@ public class SquareDAO extends DAO<Square> {
      * @throws SQLException   if error during SQL request
      */
     @Override
-    public Square storeObj(Square shape) throws ShapeException, SQLException {
+    public Triangle storeObj(Triangle shape) throws ShapeException, SQLException {
         this.connect();
         PreparedStatement sta;
 
         try {
-            sta = this.connection.prepareStatement("INSERT INTO SHAPE(Name, p1x, p1y, size) VALUES (?, ?, ?, ?)");
+            sta = this.connection.prepareStatement("INSERT INTO SHAPE(Name, p1x, p1y, p2x, p2y, p3x, p3y) VALUES (?, ?, ?, ?, ?, ?, ?)");
             sta.setString(1, shape.getName());
-            sta.setInt(2, shape.getBl().getX());
-            sta.setInt(3, shape.getBl().getY());
-            sta.setInt(4, shape.getSize());
+            sta.setInt(2, shape.getP1().getX());
+            sta.setInt(3, shape.getP1().getY());
+            sta.setInt(4, shape.getP2().getX());
+            sta.setInt(5, shape.getP2().getY());
+            sta.setInt(6, shape.getP3().getX());
+            sta.setInt(7, shape.getP3().getY());
             sta.execute();
         } catch (SQLException e) {
             System.out.println("Failed sql request");
@@ -115,16 +118,19 @@ public class SquareDAO extends DAO<Square> {
      * @throws SQLException   if error during SQL request
      */
     @Override
-    public Square updateObj(Square shape) throws ShapeException, SQLException {
+    public Triangle updateObj(Triangle shape) throws ShapeException, SQLException {
         this.connect();
         PreparedStatement sta;
 
         try {
-            sta = this.connection.prepareStatement("UPDATE SHAPE SET p1x = ? , p1y = ? , size = ? WHERE Name = ?");
-            sta.setInt(1, shape.getBl().getX());
-            sta.setInt(2, shape.getBl().getY());
-            sta.setInt(3, shape.getSize());
-            sta.setString(4, shape.getName());
+            sta = this.connection.prepareStatement("UPDATE SHAPE SET p1x = ? , p1y = ? , p2x = ? , p2y = ? , p3x = ? , p3y = ? WHERE Name = ?");
+            sta.setInt(1, shape.getP1().getX());
+            sta.setInt(2, shape.getP1().getY());
+            sta.setInt(3, shape.getP2().getX());
+            sta.setInt(4, shape.getP2().getY());
+            sta.setInt(5, shape.getP3().getX());
+            sta.setInt(6, shape.getP1().getY());
+            sta.setString(7, shape.getName());
             sta.execute();
         } catch (SQLException e) {
             System.out.println("Failed sql request");
@@ -147,24 +153,25 @@ public class SquareDAO extends DAO<Square> {
      * @throws EmptyObjectException if error during construction of the copy
      * @throws RadiusException      if error during construction of the circle
      * @throws DimensionException   if error during contsruction of the rectangle
-     * @throws SizeException        if error during construction of the square
      */
     @Override
-    public Square searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException {
+    public Triangle searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException {
         this.connect();
         PreparedStatement sta;
         ResultSet res;
-        Square shape;
+        Triangle shape;
 
         try {
-            sta = this.connection.prepareStatement("SELECT Name, p1x, p1y, size FROM SHAPE WHERE Name = ?");
+            sta = this.connection.prepareStatement("SELECT Name, p1x, p1y, p2x, p2y, p3x, p3y FROM SHAPE WHERE Name = ?");
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
             System.out.println("Check execute");
             if(res.next()) {
-                Point p = new Point(res.getInt("p1x"), res.getInt("p1y"));
-                shape = new Square(p, res.getInt("size"), res.getString("Name"));
+                Point p1 = new Point(res.getInt("p1x"), res.getInt("p1y"));
+                Point p2 = new Point(res.getInt("p2x"), res.getInt("p2y"));
+                Point p3 = new Point(res.getInt("p3x"), res.getInt("p3y"));
+                shape = new Triangle(p1, p2, p3, res.getString("Name"));
             } else {
                 this.closeConn();
                 throw new InvalidNameException();
@@ -180,4 +187,3 @@ public class SquareDAO extends DAO<Square> {
         return shape;
     }
 }
-

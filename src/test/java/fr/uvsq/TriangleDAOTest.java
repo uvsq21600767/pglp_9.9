@@ -8,19 +8,19 @@ import java.sql.SQLException;
 
 import static org.junit.Assert.*;
 
-public class SquareDAOTest {
+public class TriangleDAOTest {
     private DataBase db;
-    private Square shape;
-    private Square shape2;
-    private DAO<Square> squareDAO;
+    private Triangle shape;
+    private Triangle shape2;
+    private DAO<Triangle> triangleDAO;
 
     @Before
     public void init() throws SQLException {
         db = new DataBase();
         db.createTable();
-        shape = new Square();
-        shape2 = new Square();
-        squareDAO = DAOFactory.getSquareDAO();
+        shape = new Triangle();
+        shape2 = new Triangle();
+        triangleDAO = DAOFactory.getTriangleDAO();
     }
 
     @After
@@ -31,7 +31,7 @@ public class SquareDAOTest {
     @Test
     public void testInsert() throws SQLException, ShapeException, EmptyObjectException {
 
-        shape2 = squareDAO.storeObj(shape);
+        shape2 = triangleDAO.storeObj(shape);
         db.printTableShape();
 
         assertTrue(shape.isEqual(shape2));
@@ -39,37 +39,36 @@ public class SquareDAOTest {
 
     @Test(expected = ShapeException.class)
     public void testInsertSame() throws SQLException, ShapeException {
-        shape2 = new Square();
-        squareDAO.storeObj(shape);
-        squareDAO.storeObj(shape2);
+        shape2 = new Triangle();
+        triangleDAO.storeObj(shape);
+        triangleDAO.storeObj(shape2);
 
         db.printTableShape();
     }
 
     @Test
     public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException {
-        squareDAO.storeObj(shape);
-        squareDAO.deletObj(shape.getName());
+        triangleDAO.storeObj(shape);
+        triangleDAO.deletObj(shape.getName());
 
-        shape2 = squareDAO.storeObj(shape);
+        shape2 = triangleDAO.storeObj(shape);
         assertTrue(shape2.isEqual(shape));
     }
 
     @Test
     public void testUpdate() throws SQLException, ShapeException, EmptyObjectException {
-        squareDAO.storeObj(shape);
+        triangleDAO.storeObj(shape);
         db.printTableShape();
-        shape.setBl(new Point(4, 7));
-        shape2 = squareDAO.updateObj(shape);
+        shape.setP1(new Point(4, 7));
+        shape2 = triangleDAO.updateObj(shape);
         db.printTableShape();
         assertTrue(shape2.isEqual(shape));
     }
 
     @Test
     public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
-        squareDAO.storeObj(shape);
-        shape2 = squareDAO.searchObj(shape.getName());
+        triangleDAO.storeObj(shape);
+        shape2 = triangleDAO.searchObj(shape.getName());
         assertTrue(shape2.isEqual(shape));
     }
-
 }

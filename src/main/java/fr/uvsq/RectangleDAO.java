@@ -157,13 +157,13 @@ public class RectangleDAO extends DAO<Rectangle> {
         Rectangle r;
 
         try {
-            sta = this.connection.prepareStatement("SELECT Name, p1x, p2y, L, H FROM SHAPE WHERE Name = ?");
+            sta = this.connection.prepareStatement("SELECT Name, p1x, p1y, L, H FROM SHAPE WHERE Name = ?");
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
             System.out.println("Check execute");
             if(res.next()) {
-                Point p = new Point(res.getInt("p1x"), res.getInt("p2y"));
+                Point p = new Point(res.getInt("p1x"), res.getInt("p1y"));
                 r = new Rectangle(p, res.getInt("L"), res.getInt("H"), res.getString("Name"));
             } else {
                 this.closeConn();

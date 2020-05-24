@@ -20,7 +20,7 @@ public class ResetCommandTest {
     }
 
     @Test
-    public void testReset() throws SQLException, ShapeException, InvalidCommand, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException {
+    public void testReset() throws SQLException, ShapeException, InvalidCommand, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException {
         n.execute("reset");
        assertTrue(true);
     }

@@ -81,22 +81,16 @@ public class DataBase {
         try {
             sta.execute(Shape);
         } catch (SQLException e) {
-            System.out.println("Failed to create Table SHAPE");
-            e.printStackTrace();
-            this.closeConn();
-            return false;
+            System.out.println("Failed to create Table SHAPE : Table Already Exist");
         }
 
         try {
             sta.execute(Group);
         } catch (SQLException e) {
-            System.out.println("Failed to create Table GROUPSHAPE");
-            e.printStackTrace();
-            this.closeConn();
-            return false;
+            System.out.println("Failed to create Table GROUPSHAPE : Table already exist");
         }
 
-        System.out.println("Tables SHAPE and GROUPSHAPE created with success");
+        System.out.println("Tables SHAPE and GROUPSHAPE in the DataBase");
         this.closeConn();
         return true;
     }

@@ -30,7 +30,7 @@ public class TriangleDAOTest {
     }
 
     @Test
-    public void testInsert() throws SQLException, ShapeException, EmptyObjectException {
+    public void testInsert() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
 
         shape2 = triangleDAO.storeObj(shape);
         db.printTableShape();
@@ -39,7 +39,7 @@ public class TriangleDAOTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertSame() throws SQLException, ShapeException {
+    public void testInsertSame() throws SQLException, ShapeException, ConnectionException, CloseException {
         shape2 = new Triangle();
         triangleDAO.storeObj(shape);
         triangleDAO.storeObj(shape2);
@@ -48,7 +48,7 @@ public class TriangleDAOTest {
     }
 
     @Test
-    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException {
+    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         triangleDAO.storeObj(shape);
         triangleDAO.deletObj(shape.getName());
 
@@ -57,7 +57,7 @@ public class TriangleDAOTest {
     }
 
     @Test
-    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException {
+    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         triangleDAO.storeObj(shape);
         db.printTableShape();
         shape.setP1(new Point(4, 7));
@@ -67,7 +67,7 @@ public class TriangleDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
+    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException, ConnectionException, CloseException {
         triangleDAO.storeObj(shape);
         shape2 = triangleDAO.searchObj(shape.getName());
         assertTrue(shape2.isEqual(shape));

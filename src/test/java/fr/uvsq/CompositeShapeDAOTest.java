@@ -23,7 +23,7 @@ public class CompositeShapeDAOTest {
     private DAO<Triangle> triangleDAO;
 
     @Before
-    public void init() throws SQLException, ShapeException {
+    public void init() throws SQLException, ShapeException, ConnectionException, CloseException {
         db = new DataBase();
         db.createTable();
         shape = new CompositeShape();
@@ -49,7 +49,7 @@ public class CompositeShapeDAOTest {
     }
 
     @Test
-    public void testStore() throws SQLException, ShapeException {
+    public void testStore() throws SQLException, ShapeException, ConnectionException, CloseException {
         CompositeShape comp2;
         shape.add(shapeC);
         shape.add(shapeR);
@@ -58,7 +58,7 @@ public class CompositeShapeDAOTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testStortwice() throws SQLException, ShapeException {
+    public void testStortwice() throws SQLException, ShapeException, ConnectionException, CloseException {
         shape.add(shapeC);
         shape.add(shapeR);
         compDAO.storeObj(shape);
@@ -66,7 +66,7 @@ public class CompositeShapeDAOTest {
     }
 
     @Test
-    public void testDeleteAll() throws SQLException, ShapeException, InvalidNameException {
+    public void testDeleteAll() throws SQLException, ShapeException, InvalidNameException, ConnectionException, CloseException {
         shape.add(shapeR);
         shape.add(shapeT);
         compDAO.storeObj(shape);
@@ -78,7 +78,7 @@ public class CompositeShapeDAOTest {
     }
 
     @Test
-    public void testDeletOnce() throws SQLException, ShapeException, InvalidNameException {
+    public void testDeletOnce() throws SQLException, ShapeException, InvalidNameException, ConnectionException, CloseException {
         shape.add(shapeR);
         shape.add(shapeT);
         compDAO.storeObj(shape);
@@ -92,7 +92,7 @@ public class CompositeShapeDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, DimensionException, RadiusException, InvalidNameException, EmptyObjectException, SizeException {
+    public void testSearch() throws SQLException, ShapeException, DimensionException, RadiusException, InvalidNameException, EmptyObjectException, SizeException, ConnectionException, CloseException {
         shape.add(shapeR);
         shape.add(shapeT);
         shape.add(shapeC);

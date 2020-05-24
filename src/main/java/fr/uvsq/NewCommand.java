@@ -5,13 +5,13 @@ import java.sql.SQLException;
 public class NewCommand implements Command {
 
     @Override
-    public void execute(String in) throws NotEnoughArgumentException, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void execute(String in) throws WrongArgumentNumber, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String cmd[] = in.split(" ");
 
         if(cmd[1].equals("circle")) {
 
             if(cmd.length != 6) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
             Circle c = new Circle(new Point(Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4])), Integer.parseInt(cmd[5]), cmd[2]);
             DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
@@ -24,7 +24,7 @@ public class NewCommand implements Command {
         } else if(cmd[1].equals("rectangle")) {
 
             if(cmd.length != 7) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
             Rectangle r = new Rectangle(new Point(Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4])), Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6]), cmd[2]);
             DAO<Rectangle> rectangleDAO = DAOFactory.getRectangleDAO();
@@ -37,7 +37,7 @@ public class NewCommand implements Command {
         } else if(cmd[1].equals("square")) {
 
             if(cmd.length != 6) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
             Square r = new Square(new Point(Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4])), Integer.parseInt(cmd[5]), cmd[2]);
             DAO<Square> squareDAO = DAOFactory.getSquareDAO();
@@ -50,7 +50,7 @@ public class NewCommand implements Command {
         } else if(cmd[1].equals("triangle")) {
 
             if(cmd.length != 9) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
             Triangle t = new Triangle(new Point(Integer.parseInt(cmd[3]), Integer.parseInt(cmd[4])), new Point(Integer.parseInt(cmd[5]), Integer.parseInt(cmd[6])), new Point(Integer.parseInt(cmd[7]), Integer.parseInt(cmd[8])), cmd[2]);
             DAO<Triangle> triangleDAO = DAOFactory.getTriangleDAO();
@@ -63,7 +63,7 @@ public class NewCommand implements Command {
         } else if(cmd[1].equals("group")) {
 
             if(cmd.length != 4) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
             CompositeShape comp = new CompositeShape(cmd[2]);
             DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();

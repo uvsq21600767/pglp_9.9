@@ -4,12 +4,12 @@ import java.sql.SQLException;
 
 public class MoveCommand implements Command {
     @Override
-    public void execute(String in) throws NotEnoughArgumentException, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void execute(String in) throws WrongArgumentNumber, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String[] cmd = in.split(" ");
 
         if (cmd[1].equals("shape")) {
             if (cmd.length != 5) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             try {
@@ -43,7 +43,7 @@ public class MoveCommand implements Command {
             }
         } else if(cmd[1].equals("group")) {
             if (cmd.length != 5) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             try{

@@ -64,13 +64,13 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
         List<Shape> listShape = shape.getChildShape();
         Shape tmp;
         try {
-           for (int i = 0; i < listShape.size(); i++) {
-               tmp = listShape.get(i);
-               sta = this.connection.prepareStatement("INSERT INTO GROUPSHAPE(NameG, NameS) VALUES (?, ?)");
-               sta.setString(1, shape.getName());
-               sta.setString(2, tmp.getName());
-               sta.execute();
-           }
+            for (Shape value : listShape) {
+                tmp = value;
+                sta = this.connection.prepareStatement("INSERT INTO GROUPSHAPE(NameG, NameS) VALUES (?, ?)");
+                sta.setString(1, shape.getName());
+                sta.setString(2, tmp.getName());
+                sta.execute();
+            }
         } catch (SQLException e) {
             System.out.println("Failed sql request");
             e.printStackTrace();
@@ -145,9 +145,8 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
      * @throws SQLException   if error during SQL request
      */
     @Override
-    public CompositeShape updateObj(CompositeShape shape) throws ShapeException, SQLException {
+    public CompositeShape updateObj(CompositeShape shape) throws ShapeException, SQLException, ConnectionException, CloseException {
         this.connect();
-        PreparedStatement sta;
         List<Shape> copy = shape.getChildShape();
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
         DAO<Square> squareDAO = DAOFactory.getSquareDAO();
@@ -155,18 +154,18 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
         DAO<Triangle> triangleDAO = DAOFactory.getTriangleDAO();
 
         try {
-            for(int i = 0; i < copy.size(); i++) {
-                if(copy.get(i) instanceof Circle) {
-                    Circle c = (Circle) copy.get(i);
+            for (Shape value : copy) {
+                if (value instanceof Circle) {
+                    Circle c = (Circle) value;
                     circleDAO.updateObj(c);
-                } else if(copy.get(i) instanceof Rectangle) {
-                    Rectangle r = (Rectangle) copy.get(i);
+                } else if (value instanceof Rectangle) {
+                    Rectangle r = (Rectangle) value;
                     rectangleDAO.updateObj(r);
-                } else if(copy.get(i) instanceof Square) {
-                    Square s = (Square) copy.get(i);
+                } else if (value instanceof Square) {
+                    Square s = (Square) value;
                     squareDAO.updateObj(s);
-                } else if(copy.get(i) instanceof Triangle) {
-                    Triangle t = (Triangle) copy.get(i);
+                } else if (value instanceof Triangle) {
+                    Triangle t = (Triangle) value;
                     triangleDAO.updateObj(t);
                 } else {
                     this.closeConn();
@@ -189,13 +188,9 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
      * @return the searched shape
      * @throws InvalidNameException if invalid name of the shape
      * @throws SQLException         if error during SQL request
-     * @throws EmptyObjectException if error during construction of the copy
-     * @throws RadiusException      if error during construction of the circle
-     * @throws DimensionException   if error during contsruction of the rectangle
-     * @throws SizeException        if erro rduring constrcution of the square
      */
     @Override
-    public CompositeShape searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException {
+    public CompositeShape searchObj(String name) throws InvalidNameException, SQLException {
         this.connect();
         PreparedStatement sta;
         ResultSet res;
@@ -267,7 +262,7 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
     }
 
     @Override
-    public boolean inBase(String name) throws SQLException, ShapeException {
+    public boolean inBase(String name) {
         return false;
     }
 

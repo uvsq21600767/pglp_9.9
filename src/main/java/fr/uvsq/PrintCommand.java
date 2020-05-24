@@ -5,12 +5,12 @@ import java.sql.SQLException;
 public class PrintCommand implements Command{
 
     @Override
-    public void execute(String in) throws NotEnoughArgumentException, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void execute(String in) throws WrongArgumentNumber, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String[] cmd = in.split(" ");
 
         if (cmd[1].equals("shape")) {
             if (cmd.length != 3) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             try {
@@ -40,7 +40,7 @@ public class PrintCommand implements Command{
             }
         } else if(cmd[1].equals("group")) {
             if (cmd.length != 3) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             try {
@@ -49,6 +49,17 @@ public class PrintCommand implements Command{
                 comp.print();
             } catch (Exception e) {
                 System.out.println("Error during printing Group");
+            }
+        } else if(cmd[1].equals("table")) {
+            if(cmd.length != 2) {
+                throw new WrongArgumentNumber();
+            }
+            try {
+                DataBase bd = new DataBase();
+                bd.printTableGroup();
+                bd.printTableShape();
+            } catch (SQLException e) {
+                System.out.println("Canno't print tables");
             }
         } else {
             throw new InvalidCommand();

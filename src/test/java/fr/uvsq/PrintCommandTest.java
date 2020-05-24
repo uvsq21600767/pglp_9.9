@@ -24,7 +24,7 @@ public class PrintCommandTest {
     private DAO<CompositeShape> compositeShapeDAO;
 
     @Before
-    public void init() throws SQLException, ShapeException {
+    public void init() throws SQLException, ShapeException, ConnectionException, CloseException {
         n = new PrintCommand();
         db = new DataBase();
         db.createTable();
@@ -55,7 +55,7 @@ public class PrintCommandTest {
     }
 
     @Test
-    public void testPrintShape() throws SQLException, ShapeException, InvalidCommand, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException {
+    public void testPrintShape() throws SQLException, ShapeException, InvalidCommand, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, ConnectionException, CloseException {
         db.printTableShape();
         db.printTableGroup();
         String str = "print shape Circle";

@@ -31,7 +31,7 @@ public class RectangleDAOTest {
     }
 
     @Test
-    public void testInsertCircle() throws SQLException, ShapeException, EmptyObjectException {
+    public void testInsertCircle() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
 
         shape2 = rectangleDAO.storeObj(shape);
         db.printTableShape();
@@ -40,7 +40,7 @@ public class RectangleDAOTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertSame() throws SQLException, ShapeException {
+    public void testInsertSame() throws SQLException, ShapeException, ConnectionException, CloseException {
         shape2 = new Rectangle();
         rectangleDAO.storeObj(shape);
         rectangleDAO.storeObj(shape2);
@@ -49,7 +49,7 @@ public class RectangleDAOTest {
     }
 
     @Test
-    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException {
+    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         rectangleDAO.storeObj(shape);
         rectangleDAO.deletObj(shape.getName());
 
@@ -58,7 +58,7 @@ public class RectangleDAOTest {
     }
 
     @Test
-    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException {
+    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         rectangleDAO.storeObj(shape);
         db.printTableShape();
         shape.setBl(new Point(4, 7));
@@ -68,7 +68,7 @@ public class RectangleDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
+    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException, ConnectionException, CloseException {
        rectangleDAO.storeObj(shape);
         shape2 = rectangleDAO.searchObj(shape.getName());
         assertTrue(shape2.isEqual(shape));

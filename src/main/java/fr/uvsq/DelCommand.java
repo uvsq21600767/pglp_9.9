@@ -4,12 +4,12 @@ import java.sql.SQLException;
 
 public class DelCommand implements Command {
     @Override
-    public void execute(String in) throws NotEnoughArgumentException, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void execute(String in) throws WrongArgumentNumber, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String[] cmd = in.split(" ");
 
         if(cmd[1].equals("group")) {
             if(cmd.length != 3) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();
@@ -20,7 +20,7 @@ public class DelCommand implements Command {
             }
         } else if(cmd[1].equals("shape")) {
             if(cmd.length != 3) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
@@ -31,7 +31,7 @@ public class DelCommand implements Command {
             }
         } else if(cmd[1].equals("unlink")) {
             if(cmd.length != 4) {
-                throw new NotEnoughArgumentException();
+                throw new WrongArgumentNumber();
             }
 
             DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();

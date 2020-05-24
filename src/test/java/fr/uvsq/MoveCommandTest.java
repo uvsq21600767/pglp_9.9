@@ -24,7 +24,7 @@ public class MoveCommandTest {
     private DAO<CompositeShape> compositeShapeDAO;
 
     @Before
-    public void init() throws SQLException, ShapeException {
+    public void init() throws SQLException, ShapeException, ConnectionException, CloseException {
         n = new MoveCommand();
         db = new DataBase();
         db.createTable();
@@ -55,7 +55,7 @@ public class MoveCommandTest {
     }
 
     @Test
-    public void TestTranslate() throws SQLException, ShapeException, InvalidCommand, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException {
+    public void TestTranslate() throws SQLException, ShapeException, InvalidCommand, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, ConnectionException, CloseException {
         db.printTableShape();
         String str = "move shape Circle 1 5";
         n.execute(str);
@@ -64,7 +64,7 @@ public class MoveCommandTest {
     }
 
     @Test
-    public void testTranslateGroup() throws SQLException, ShapeException, InvalidCommand, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException {
+    public void testTranslateGroup() throws SQLException, ShapeException, InvalidCommand, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, ConnectionException, CloseException {
         db.printTableShape();
         String str = "move group G1 1 5";
         n.execute(str);

@@ -28,13 +28,13 @@ public abstract class DAO<S> {
      * Connection to the database
      * @throws SQLException if any error during DriverManager.getConnection(dburl)
      */
-    public abstract void connect() throws SQLException;
+    public abstract void connect() throws SQLException, ConnectionException;
 
     /**
      * Close the connection
      * @throws SQLException if error during the connection.close()
      */
-    public abstract void closeConn() throws SQLException;
+    public abstract void closeConn() throws SQLException, ConnectionException, CloseException;
 
     /**
      * Create the object in the DataBase
@@ -43,7 +43,7 @@ public abstract class DAO<S> {
      * @throws ShapeException if error invalid Shape
      * @throws SQLException if error during SQL request
      */
-    public abstract S storeObj(S shape) throws ShapeException, SQLException;
+    public abstract S storeObj(S shape) throws ShapeException, SQLException, ConnectionException, CloseException;
 
     /**
      * Delete the Object of the DB
@@ -51,7 +51,7 @@ public abstract class DAO<S> {
      * @throws InvalidNameException if invalid name of the Shape
      * @throws SQLException if error during SQL request
      */
-    public abstract void deletObj(String name) throws InvalidNameException, SQLException;
+    public abstract void deletObj(String name) throws InvalidNameException, SQLException, ConnectionException, CloseException;
 
     /**
      * Delete the Object of the DB for GROUPSHAPE
@@ -70,7 +70,7 @@ public abstract class DAO<S> {
      * @throws ShapeException if invalid shape
      * @throws SQLException if error during SQL request
      */
-    public abstract S updateObj(S shape) throws ShapeException, SQLException;
+    public abstract S updateObj(S shape) throws ShapeException, SQLException, ConnectionException, CloseException;
 
     /**
      * Serach a shape in the DB
@@ -83,8 +83,8 @@ public abstract class DAO<S> {
      * @throws DimensionException if error during contsruction of the rectangle
      * @throws SizeException if erro rduring constrcution of the square
      */
-    public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException;
+    public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException, ConnectionException, CloseException;
 
-    public abstract boolean inBase(String name) throws SQLException, ShapeException;
+    public abstract boolean inBase(String name) throws SQLException, ShapeException, ConnectionException, CloseException;
 
 }

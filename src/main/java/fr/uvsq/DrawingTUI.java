@@ -1,8 +1,13 @@
 package fr.uvsq;
 
-public class DrawingTUI {
+import java.sql.SQLException;
 
-    public Command nextCommand(String in) {
+public class DrawingTUI {
+    DrawingTUI() throws SQLException {
+        DataBase db = new DataBase();
+        db.createTable();
+    }
+    public Command nextCommand(String in) throws SQLException {
         String cmd[] = in.split(" ");
         if(cmd[0].equals("new")) {
             return new NewCommand();
@@ -12,7 +17,11 @@ public class DrawingTUI {
             return new MoveCommand();
         } else if(cmd[0].equals("print")) {
             return new PrintCommand();
+        } else if(cmd[0].equals("reset")) {
+            return new ResetCommand();
+        } else if(cmd[0].equals("exit")) {
+            return new ExitCommand();
         }
-        return null;
+        return new NullCommand();
     }
 }

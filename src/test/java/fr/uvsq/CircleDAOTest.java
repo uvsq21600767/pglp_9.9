@@ -25,7 +25,7 @@ public class CircleDAOTest {
     }
 
     @Test
-    public void testInsertCircle() throws SQLException, ShapeException, EmptyObjectException {
+    public void testInsertCircle() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
         Circle c2 = circleDAO.storeObj(c);
         db.printTableShape();
@@ -34,7 +34,7 @@ public class CircleDAOTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertSame() throws SQLException, ShapeException {
+    public void testInsertSame() throws SQLException, ShapeException, ConnectionException, CloseException {
         Circle c2 = new Circle();
 
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
@@ -45,7 +45,7 @@ public class CircleDAOTest {
     }
 
     @Test
-    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException {
+    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
         circleDAO.storeObj(c);
         circleDAO.deletObj(c.getName());
@@ -55,7 +55,7 @@ public class CircleDAOTest {
     }
 
     @Test
-    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException {
+    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
         circleDAO.storeObj(c);
         db.printTableShape();
@@ -66,7 +66,7 @@ public class CircleDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
+    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException, ConnectionException, CloseException {
         DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
         circleDAO.storeObj(c);
         Circle c2 = circleDAO.searchObj(c.getName());

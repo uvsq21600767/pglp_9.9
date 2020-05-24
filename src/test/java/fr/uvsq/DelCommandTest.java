@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
-
 public class DelCommandTest {
 
     private DelCommand n;
@@ -16,7 +14,7 @@ public class DelCommandTest {
     private Square s;
 
     @Before
-    public void init() throws SQLException, ShapeException {
+    public void init() throws SQLException, ShapeException, ConnectionException, CloseException {
         db = new DataBase();
         db.createTable();
         c = new Circle();
@@ -34,7 +32,7 @@ public class DelCommandTest {
     }
 
     @Test
-    public void testDelShape() throws SQLException, ShapeException, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand {
+    public void testDelShape() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException {
         DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();
         CompositeShape comp = new CompositeShape("G1");
         comp.add(c);
@@ -49,7 +47,7 @@ public class DelCommandTest {
     }
 
     @Test
-    public void testDelShapeSquare() throws SQLException, ShapeException, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand {
+    public void testDelShapeSquare() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException {
         DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();
         CompositeShape comp = new CompositeShape("G1");
         comp.add(c);
@@ -62,7 +60,7 @@ public class DelCommandTest {
     }
 
     @Test
-    public void testDelGroup() throws SQLException, ShapeException, InvalidNameException, DimensionException, NotEnoughArgumentException, EmptyObjectException, RadiusException, SizeException, InvalidCommand {
+    public void testDelGroup() throws SQLException, ShapeException, InvalidNameException, DimensionException, WrongArgumentNumber, EmptyObjectException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException {
         DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();
         CompositeShape comp = new CompositeShape("G1");
         comp.add(c);
@@ -76,7 +74,7 @@ public class DelCommandTest {
     }
 
     @Test
-    public void testDelLink() throws SQLException, ShapeException, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand {
+    public void testDelLink() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException {
         DAO<CompositeShape> compositeShapeDAO = DAOFactory.getCompositeShapeDAO();
         CompositeShape comp = new CompositeShape("G1");
         comp.add(c);

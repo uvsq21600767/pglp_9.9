@@ -30,7 +30,7 @@ public class SquareDAOTest {
     }
 
     @Test
-    public void testInsert() throws SQLException, ShapeException, EmptyObjectException {
+    public void testInsert() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
 
         shape2 = squareDAO.storeObj(shape);
         db.printTableShape();
@@ -39,7 +39,7 @@ public class SquareDAOTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertSame() throws SQLException, ShapeException {
+    public void testInsertSame() throws SQLException, ShapeException, ConnectionException, CloseException {
         shape2 = new Square();
         squareDAO.storeObj(shape);
         squareDAO.storeObj(shape2);
@@ -48,7 +48,7 @@ public class SquareDAOTest {
     }
 
     @Test
-    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException {
+    public void testDelete() throws InvalidNameException, SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         squareDAO.storeObj(shape);
         squareDAO.deletObj(shape.getName());
 
@@ -57,7 +57,7 @@ public class SquareDAOTest {
     }
 
     @Test
-    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException {
+    public void testUpdate() throws SQLException, ShapeException, EmptyObjectException, ConnectionException, CloseException {
         squareDAO.storeObj(shape);
         db.printTableShape();
         shape.setBl(new Point(4, 7));
@@ -67,7 +67,7 @@ public class SquareDAOTest {
     }
 
     @Test
-    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException {
+    public void testSearch() throws SQLException, ShapeException, RadiusException, InvalidNameException, EmptyObjectException, DimensionException, SizeException, ConnectionException, CloseException {
         squareDAO.storeObj(shape);
         shape2 = squareDAO.searchObj(shape.getName());
         assertTrue(shape2.isEqual(shape));

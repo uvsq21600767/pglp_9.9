@@ -71,7 +71,7 @@ public class CircleTest {
     }
 
     @Test(expected = EmptyObjectException.class)
-    public void TestisEqualException() throws RadiusException, EmptyObjectException {
+    public void TestisEqualException() throws EmptyObjectException {
         c.isEqual(null);
     }
 

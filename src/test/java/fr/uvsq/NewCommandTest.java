@@ -6,8 +6,6 @@ import org.junit.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.Assert.*;
-
 public class NewCommandTest {
 
     private NewCommand n;
@@ -26,7 +24,7 @@ public class NewCommandTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertCircle() throws RadiusException, NotEnoughArgumentException, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void testInsertCircle() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String str = "next circle Test1 0 0 60";
         n.execute(str);
         db.printTableShape();
@@ -34,7 +32,7 @@ public class NewCommandTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertRectangle() throws RadiusException, NotEnoughArgumentException, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void testInsertRectangle() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String str = "next rectangle Test1 0 0 5 4";
         n.execute(str);
         db.printTableShape();
@@ -42,7 +40,7 @@ public class NewCommandTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertSquare() throws RadiusException, NotEnoughArgumentException, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void testInsertSquare() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String str = "next square Test1 0 0 5";
         n.execute(str);
         db.printTableShape();
@@ -50,7 +48,7 @@ public class NewCommandTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertTriangle() throws RadiusException, NotEnoughArgumentException, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand {
+    public void testInsertTriangle() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException {
         String str = "next triangle Test1 0 0 5 4 2 1";
         n.execute(str);
         db.printTableShape();
@@ -58,7 +56,7 @@ public class NewCommandTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertGroup() throws SQLException, ShapeException, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand {
+    public void testInsertGroup() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException {
         String str = "new group G1 circ";
         String str2 = "new circle circ 0 0 10";
 
@@ -70,7 +68,7 @@ public class NewCommandTest {
     }
 
     @Test(expected = ShapeException.class)
-    public void testInsertMultiple() throws SQLException, ShapeException, DimensionException, NotEnoughArgumentException, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand {
+    public void testInsertMultiple() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException {
         String str = "new circle cr 0 0 10";
         String str2 = "new square sq 0 0 5";
         String str3 = "new rectangle rq 0 0 10 5";

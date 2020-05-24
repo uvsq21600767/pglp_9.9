@@ -176,7 +176,6 @@ public class TriangleDAO extends DAO<Triangle> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            System.out.println("Check execute");
             if(res.next()) {
                 Point p1 = new Point(res.getInt("p1x"), res.getInt("p1y"));
                 Point p2 = new Point(res.getInt("p2x"), res.getInt("p2y"));

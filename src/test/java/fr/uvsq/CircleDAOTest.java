@@ -21,6 +21,7 @@ public class CircleDAOTest {
     @After
     public void reset() throws SQLException {
         db.dropShape();
+        db.dropGroup();
     }
 
     @Test

@@ -107,6 +107,19 @@ public class SquareDAO extends DAO<Square> {
     }
 
     /**
+     * Delete the Object of the DB for GROUPSHAPE
+     *
+     * @param nameG name of the Group
+     * @param nameS name of the Shape
+     * @throws InvalidNameException if invalid name of the Shape or Group
+     * @throws SQLException         if error during SQL request
+     */
+    @Override
+    public void deletObj(String nameG, String nameS) throws InvalidNameException, SQLException {
+
+    }
+
+    /**
      * Update a shape in the DB
      *
      * @param shape the shape to update
@@ -179,5 +192,6 @@ public class SquareDAO extends DAO<Square> {
         this.closeConn();
         return shape;
     }
+
 }
 

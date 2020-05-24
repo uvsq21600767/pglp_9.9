@@ -27,6 +27,7 @@ public class RectangleDAOTest {
     @After
     public void reset() throws SQLException {
         db.dropShape();
+        db.dropGroup();
     }
 
     @Test

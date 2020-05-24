@@ -16,6 +16,7 @@ public class DataBaseTest {
         assertTrue(d.createTable());
         System.out.println("------");
         d.dropShape();
+        d.dropGroup();
     }
 
     @Test
@@ -25,6 +26,7 @@ public class DataBaseTest {
         assertTrue(d.printTableShape());
         System.out.println("------");
         d.dropShape();
+        d.dropGroup();
     }
 
     @Test
@@ -32,6 +34,16 @@ public class DataBaseTest {
         d = new DataBase();
         d.createTable();
         assertTrue(d.dropShape());
+    }
+
+    @Test
+    public void testPrintTableGroup() throws SQLException {
+        d = new DataBase();
+        d.createTable();
+        assertTrue(d.printTableGroup());
+        System.out.println("------");
+        d.dropShape();
+        d.dropGroup();
     }
 
 }

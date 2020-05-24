@@ -70,6 +70,11 @@ public class DataBase {
                 + "H int,"
                 + "PRIMARY KEY(Name))";
 
+        String Group = "CREATE TABLE GROUPSHAPE ("
+                + "NameG varchar(50),"
+                + "NameS varchar(50),"
+                + "PRIMARY KEY(NameG, NameS))";
+
         this.connect();
         Statement sta = this.connection.createStatement();
 
@@ -82,7 +87,16 @@ public class DataBase {
             return false;
         }
 
-        System.out.println("Table SHAPE created with success");
+        try {
+            sta.execute(Group);
+        } catch (SQLException e) {
+            System.out.println("Failed to create Table GROUPSHAPE");
+            e.printStackTrace();
+            this.closeConn();
+            return false;
+        }
+
+        System.out.println("Tables SHAPE and GROUPSHAPE created with success");
         this.closeConn();
         return true;
     }
@@ -127,6 +141,35 @@ public class DataBase {
     }
 
     /**
+     * Print table GROUP
+     * @return true if the printing is correct
+     * @throws SQLException if error during the execution of the request
+     */
+    public boolean printTableGroup() throws SQLException {
+
+        this.connect();
+        PreparedStatement req = this.connection.prepareStatement("SELECT * FROM GROUPSHAPE");
+        try {
+            String rep = "";
+            req.execute();
+            ResultSet res = req.getResultSet();
+            rep = rep + "---Printing GROUP---\n";
+            while (res.next()) {
+                rep = rep + res.getObject(1) + " "
+                        + res.getObject(2) + "\n";
+            }
+            System.out.println(rep);
+        } catch (SQLException e) {
+            System.out.println("Printing Table GROUPSHAPE failed");
+            this.closeConn();
+            throw new SQLException("Failure : can't select table GROUPSHAPE");
+        }
+        System.out.println("---Ending printing---");
+        this.closeConn();
+        return true;
+    }
+
+    /**
      * Drop the table SHAPE
      * @return true if the drop is successful
      * @throws SQLException if error during the execution of the request
@@ -145,6 +188,37 @@ public class DataBase {
         }
         System.out.println("Table SHAPE dropped with success");
         this.closeConn();
+        return true;
+    }
+
+    /**
+     * Drop the table GROUP
+     * @return true if the drop is successful
+     * @throws SQLException if error during the execution of the request
+     */
+    public boolean dropGroup() throws SQLException {
+        this.connect();
+        Statement sta = this.connection.createStatement();
+
+        try {
+            sta.execute("DROP TABLE GROUPSHAPE");
+        } catch (SQLException e) {
+            System.out.println("Failed to drop Table GROUPSHAPE");
+            e.printStackTrace();
+            this.closeConn();
+            return false;
+        }
+        System.out.println("Table GROUPSHAPE dropped with success");
+        this.closeConn();
+        return true;
+    }
+
+    public boolean dropTable() throws SQLException {
+        if(!dropShape()) {
+            return false;
+        } else if(!dropGroup()) {
+            return false;
+        }
         return true;
     }
 

@@ -66,4 +66,14 @@ public class CompositeShapeTest {
 
         assertEquals(10, t.getP1().getX());
     }
+
+    @Test
+    public void TestDeleteMultiple() {
+        Circle c2 = new Circle();
+        c.add(c);
+        c.add(c2);
+        c.remove(c2);
+
+        assertEquals(1, c.getChildShape().size());
+    }
 }

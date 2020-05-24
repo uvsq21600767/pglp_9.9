@@ -5,7 +5,16 @@ import java.util.List;
 
 public class CompositeShape implements Shape {
 
+    private String name;
     private List<Shape> childShape = new ArrayList<Shape>();
+
+    CompositeShape() {
+        this.name = "Group";
+    }
+
+    CompositeShape(String name) {
+        this.name = name;
+    }
 
     /**
      * translation on all component
@@ -42,4 +51,21 @@ public class CompositeShape implements Shape {
     public void remove(Shape shape) {
         childShape.remove(shape);
     }
+
+    /**
+     * Getter of name
+     * @return this.name
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Setter of name
+     * @param name the new name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    
 }

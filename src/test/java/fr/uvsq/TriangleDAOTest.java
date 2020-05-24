@@ -26,6 +26,7 @@ public class TriangleDAOTest {
     @After
     public void reset() throws SQLException {
         db.dropShape();
+        db.dropGroup();
     }
 
     @Test

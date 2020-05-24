@@ -2,6 +2,7 @@ package fr.uvsq;
 
 public interface Shape {
 
+    String getName();
     /**
      * Translation of the shape
      * @param x translation on the x axe

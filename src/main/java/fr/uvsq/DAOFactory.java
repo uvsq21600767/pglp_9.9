@@ -17,4 +17,8 @@ public class DAOFactory {
     public static DAO<Triangle> getTriangleDAO() {
         return new TriangleDAO();
     }
+
+    public static DAO<CompositeShape> getCompositeShapeDAO() {
+        return new CompositeShapeDAO();
+    }
 }

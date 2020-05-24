@@ -53,6 +53,15 @@ public abstract class DAO<S> {
      */
     public abstract void deletObj(String name) throws InvalidNameException, SQLException;
 
+    /**
+     * Delete the Object of the DB for GROUPSHAPE
+     * @param nameG name of the Group
+     * @param nameS name of the Shape
+     * @throws InvalidNameException if invalid name of the Shape or Group
+     * @throws SQLException if error during SQL request
+     */
+    public abstract void deletObj(String nameG, String nameS) throws InvalidNameException, SQLException;
+
 
     /**
      * Update a shape in the DB
@@ -75,4 +84,5 @@ public abstract class DAO<S> {
      * @throws SizeException if erro rduring constrcution of the square
      */
     public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException;
+
 }

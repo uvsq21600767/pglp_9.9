@@ -78,8 +78,6 @@ public class CircleDAO extends DAO<Circle> {
             sta.setInt(4, shape.getRadius());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             try {
                 this.closeConn();
             } catch (CloseException f) {
@@ -119,8 +117,6 @@ public class CircleDAO extends DAO<Circle> {
             sta.setString(1, name);
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             try {
                 this.closeConn();
             } catch (CloseException f) {
@@ -171,8 +167,6 @@ public class CircleDAO extends DAO<Circle> {
             sta.setString(4, shape.getName());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             try {
                 this.closeConn();
             } catch (CloseException f) {
@@ -216,7 +210,6 @@ public class CircleDAO extends DAO<Circle> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            System.out.println("Check execute");
             if(res.next()) {
                 Point p = new Point(res.getInt("p1x"), res.getInt("p1y"));
                 c = new Circle(p, res.getInt("radius"), res.getString("Name"));
@@ -229,7 +222,6 @@ public class CircleDAO extends DAO<Circle> {
                 throw new InvalidNameException();
             }
         } catch (SQLException | CloseException e) {
-            System.out.println("Failed sql request");
             try {
                 this.closeConn();
             } catch (CloseException f) {

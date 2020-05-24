@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class NewCommand implements Command {
 
     @Override
-    public void execute(String in) throws WrongArgumentNumber, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException, InvalidArgument {
+    public void execute(String in) throws WrongArgumentNumber, EmptyObjectException, RadiusException, SQLException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String cmd[] = in.split(" ");
 
         if(cmd[1].equals("circle")) {
@@ -19,8 +19,7 @@ public class NewCommand implements Command {
                 try {
                     circleDAO.storeObj(c);
                 } catch (ShapeException e) {
-                    System.out.println("Object with this name already in DB");
-                    throw new ShapeException();
+                    throw new DoubleInsertException();
                 }
             } catch (NumberFormatException e) {
                 throw new InvalidArgument();
@@ -36,8 +35,7 @@ public class NewCommand implements Command {
                 try {
                     rectangleDAO.storeObj(r);
                 } catch (ShapeException e) {
-                    System.out.println("Object with this name already in DB");
-                    throw new ShapeException();
+                    throw new DoubleInsertException();
                 }
             } catch (NumberFormatException e) {
                 throw new InvalidArgument();
@@ -54,8 +52,7 @@ public class NewCommand implements Command {
                 try {
                     squareDAO.storeObj(r);
                 } catch (ShapeException e) {
-                    System.out.println("Object with this name already in DB");
-                    throw new ShapeException();
+                    throw new DoubleInsertException();
                 }
             } catch (NumberFormatException e) {
                 throw new InvalidArgument();
@@ -72,8 +69,7 @@ public class NewCommand implements Command {
                 try {
                     triangleDAO.storeObj(t);
                 } catch (ShapeException e) {
-                    System.out.println("Object with this name already in DB");
-                    throw new ShapeException();
+                    throw new DoubleInsertException();
                 }
             } catch (NumberFormatException e) {
                 throw new InvalidArgument();
@@ -110,8 +106,7 @@ public class NewCommand implements Command {
 
                 compositeShapeDAO.storeObj(comp);
             } catch (ShapeException e) {
-                System.out.println("Object with this name already in DB");
-                throw new ShapeException();
+                throw new DoubleInsertException();
             }
         } else {
             throw new InvalidCommand();

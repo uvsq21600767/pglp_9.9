@@ -146,7 +146,40 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
      */
     @Override
     public CompositeShape updateObj(CompositeShape shape) throws ShapeException, SQLException {
-        return null;
+        this.connect();
+        PreparedStatement sta;
+        List<Shape> copy = shape.getChildShape();
+        DAO<Circle> circleDAO = DAOFactory.getCircleDAO();
+        DAO<Square> squareDAO = DAOFactory.getSquareDAO();
+        DAO<Rectangle> rectangleDAO = DAOFactory.getRectangleDAO();
+        DAO<Triangle> triangleDAO = DAOFactory.getTriangleDAO();
+
+        try {
+            for(int i = 0; i < copy.size(); i++) {
+                if(copy.get(i) instanceof Circle) {
+                    Circle c = (Circle) copy.get(i);
+                    circleDAO.updateObj(c);
+                } else if(copy.get(i) instanceof Rectangle) {
+                    Rectangle r = (Rectangle) copy.get(i);
+                    rectangleDAO.updateObj(r);
+                } else if(copy.get(i) instanceof Square) {
+                    Square s = (Square) copy.get(i);
+                    squareDAO.updateObj(s);
+                } else if(copy.get(i) instanceof Triangle) {
+                    Triangle t = (Triangle) copy.get(i);
+                    triangleDAO.updateObj(t);
+                } else {
+                    this.closeConn();
+                    throw new ShapeException();
+                }
+            }
+        } catch (ShapeException e) {
+            this.closeConn();
+            System.out.println("Updating failed for group " + shape.getName());
+            throw new ShapeException();
+        }
+        this.closeConn();
+        return shape;
     }
 
     /**

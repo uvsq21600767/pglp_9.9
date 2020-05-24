@@ -70,10 +70,20 @@ public class CompositeShapeTest {
     @Test
     public void TestDeleteMultiple() {
         Circle c2 = new Circle();
-        c.add(c);
+        c.add(circ);
         c.add(c2);
         c.remove(c2);
 
         assertEquals(1, c.getChildShape().size());
+    }
+
+    @Test
+    public void testPrint() {
+        c.add(circ);
+        c.add(r);
+        c.add(s);
+        c.add(t);
+        c.print();
+        assertTrue(true);
     }
 }

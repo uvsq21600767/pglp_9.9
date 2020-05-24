@@ -214,11 +214,9 @@ public class TriangleDAO extends DAO<Triangle> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            String str = "";
 
             if(res.next()) {
-                str += res.getObject("p2x");
-                if(str == null) {
+                if(res.getObject("p2x") == null) {
                     this.closeConn();
                     return false;
                 }

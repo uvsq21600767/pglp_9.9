@@ -133,7 +133,7 @@ public class Rectangle implements Shape {
     public String toString() {
         String str = "";
         str += "Name : " + this.getName() + " "
-                + "Bottom Left Point (" + this.getBl().getX() + "," + this.getBl().getY() + ") L : " + this.getL() + " H : " + this.getL();
+                + "Bottom Left Point (" + this.getBl().getX() + "," + this.getBl().getY() + ") L : " + this.getL() + " H : " + this.getH();
         return str;
     }
     /**

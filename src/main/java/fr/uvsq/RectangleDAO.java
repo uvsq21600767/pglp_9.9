@@ -206,11 +206,9 @@ public class RectangleDAO extends DAO<Rectangle> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            String str = "";
 
             if(res.next()) {
-                str += res.getObject("H");
-                if(str == null) {
+                if(res.getObject("H") == null) {
                     this.closeConn();
                     return false;
                 }

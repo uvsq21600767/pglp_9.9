@@ -207,11 +207,9 @@ public class SquareDAO extends DAO<Square> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            String str = "";
 
             if(res.next()) {
-                str += res.getObject("size");
-                if(str == null) {
+                if(res.getObject("size") == null) {
                     this.closeConn();
                     return false;
                 }

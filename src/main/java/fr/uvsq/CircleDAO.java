@@ -204,11 +204,9 @@ public class CircleDAO extends DAO<Circle> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            String str = "";
 
             if(res.next()) {
-                str += res.getObject("radius");
-                if(str == null) {
+                if(res.getObject("radius") == null) {
                     this.closeConn();
                     return false;
                 }

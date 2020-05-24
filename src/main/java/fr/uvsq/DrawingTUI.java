@@ -8,6 +8,10 @@ public class DrawingTUI {
             return new NewCommand();
         } else if(cmd[0].equals("del")) {
             return new DelCommand();
+        } else if(cmd[0].equals("move")) {
+            return new MoveCommand();
+        } else if(cmd[0].equals("print")) {
+            return new PrintCommand();
         }
         return null;
     }

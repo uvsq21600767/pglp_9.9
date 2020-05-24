@@ -70,8 +70,6 @@ public class RectangleDAO extends DAO<Rectangle> {
             sta.setInt(5, shape.getH());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -100,8 +98,6 @@ public class RectangleDAO extends DAO<Rectangle> {
             sta.setString(1, name);
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new InvalidNameException();
         }
@@ -143,8 +139,6 @@ public class RectangleDAO extends DAO<Rectangle> {
             sta.setString(5, shape.getName());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -176,7 +170,6 @@ public class RectangleDAO extends DAO<Rectangle> {
             sta.setString(1, name);
             sta.execute();
             res = sta.getResultSet();
-            System.out.println("Check execute");
             if(res.next()) {
                 Point p = new Point(res.getInt("p1x"), res.getInt("p1y"));
                 r = new Rectangle(p, res.getInt("L"), res.getInt("H"), res.getString("Name"));
@@ -185,8 +178,6 @@ public class RectangleDAO extends DAO<Rectangle> {
                 throw new InvalidNameException();
             }
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            this.closeConn();
             e.printStackTrace();
             throw new InvalidNameException();
         }

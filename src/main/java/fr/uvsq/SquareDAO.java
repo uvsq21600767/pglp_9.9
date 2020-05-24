@@ -70,8 +70,6 @@ public class SquareDAO extends DAO<Square> {
             sta.setInt(4, shape.getSize());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -100,8 +98,6 @@ public class SquareDAO extends DAO<Square> {
             sta.setString(1, name);
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new InvalidNameException();
         }
@@ -143,8 +139,6 @@ public class SquareDAO extends DAO<Square> {
             sta.setString(4, shape.getName());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -186,9 +180,7 @@ public class SquareDAO extends DAO<Square> {
                 throw new InvalidNameException();
             }
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
             this.closeConn();
-            e.printStackTrace();
             throw new InvalidNameException();
         }
 

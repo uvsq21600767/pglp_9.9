@@ -73,8 +73,6 @@ public class TriangleDAO extends DAO<Triangle> {
             sta.setInt(7, shape.getP3().getY());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -103,8 +101,6 @@ public class TriangleDAO extends DAO<Triangle> {
             sta.setString(1, name);
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new InvalidNameException();
         }
@@ -149,8 +145,6 @@ public class TriangleDAO extends DAO<Triangle> {
             sta.setString(7, shape.getName());
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -193,9 +187,7 @@ public class TriangleDAO extends DAO<Triangle> {
                 throw new InvalidNameException();
             }
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
             this.closeConn();
-            e.printStackTrace();
             throw new InvalidNameException();
         }
 

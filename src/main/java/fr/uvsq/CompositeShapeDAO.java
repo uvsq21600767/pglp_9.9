@@ -72,8 +72,6 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
                 sta.execute();
             }
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new ShapeException();
         }
@@ -99,8 +97,6 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
             sta.setString(1, name);
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new InvalidNameException();
         }
@@ -127,8 +123,6 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
             sta.setString(2, nameS);
             sta.execute();
         } catch (SQLException e) {
-            System.out.println("Failed sql request");
-            e.printStackTrace();
             this.closeConn();
             throw new InvalidNameException();
         }
@@ -244,16 +238,12 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
                         System.out.println("Invalid row");
                     }
                 } catch (Exception e) {
-                    System.out.println("Failed sql request : selection of shape in group");
-                    e.printStackTrace();
                     this.closeConn();
                     throw new InvalidNameException();
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Failed sql request : selection of group");
             this.closeConn();
-            e.printStackTrace();
             throw new InvalidNameException();
         }
 

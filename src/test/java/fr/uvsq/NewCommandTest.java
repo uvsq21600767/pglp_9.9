@@ -23,7 +23,7 @@ public class NewCommandTest {
         db.dropTable();
     }
 
-    @Test(expected = ShapeException.class)
+    @Test(expected = DoubleInsertException.class)
     public void testInsertCircle() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String str = "next circle Test1 0 0 60";
         n.execute(str);
@@ -31,7 +31,7 @@ public class NewCommandTest {
         n.execute(str);
     }
 
-    @Test(expected = ShapeException.class)
+    @Test(expected = DoubleInsertException.class)
     public void testInsertRectangle() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String str = "next rectangle Test1 0 0 5 4";
         n.execute(str);
@@ -39,7 +39,7 @@ public class NewCommandTest {
         n.execute(str);
     }
 
-    @Test(expected = ShapeException.class)
+    @Test(expected = DoubleInsertException.class)
     public void testInsertSquare() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String str = "next square Test1 0 0 5";
         n.execute(str);
@@ -47,7 +47,7 @@ public class NewCommandTest {
         n.execute(str);
     }
 
-    @Test(expected = ShapeException.class)
+    @Test(expected = DoubleInsertException.class)
     public void testInsertTriangle() throws RadiusException, WrongArgumentNumber, SQLException, EmptyObjectException, ShapeException, DimensionException, SizeException, InvalidNameException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String str = "next triangle Test1 0 0 5 4 2 1";
         n.execute(str);
@@ -55,7 +55,7 @@ public class NewCommandTest {
         n.execute(str);
     }
 
-    @Test(expected = ShapeException.class)
+    @Test(expected = DoubleInsertException.class)
     public void testInsertGroup() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String str = "new group G1 circ";
         String str2 = "new circle circ 0 0 10";
@@ -67,7 +67,7 @@ public class NewCommandTest {
         n.execute(str);
     }
 
-    @Test(expected = ShapeException.class)
+    @Test(expected = DoubleInsertException.class)
     public void testInsertMultiple() throws SQLException, ShapeException, DimensionException, WrongArgumentNumber, EmptyObjectException, InvalidNameException, RadiusException, SizeException, InvalidCommand, ConnectionException, CloseException, InvalidArgument, DoubleInsertException {
         String str = "new circle cr 0 0 10";
         String str2 = "new square sq 0 0 5";

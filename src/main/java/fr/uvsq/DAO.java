@@ -27,12 +27,15 @@ public abstract class DAO<S> {
     /**
      * Connection to the database
      * @throws SQLException if any error during DriverManager.getConnection(dburl)
+     * @throws ConnectionException if error during connection
      */
     public abstract void connect() throws SQLException, ConnectionException;
 
     /**
      * Close the connection
      * @throws SQLException if error during the connection.close()
+     * @throws ConnectionException if error during connection
+     * @throws CloseException if error during closing
      */
     public abstract void closeConn() throws SQLException, ConnectionException, CloseException;
 
@@ -42,6 +45,8 @@ public abstract class DAO<S> {
      * @return the inserted Object
      * @throws ShapeException if error invalid Shape
      * @throws SQLException if error during SQL request
+     * @throws ConnectionException if error during connection
+     * @throws CloseException if error during closing
      */
     public abstract S storeObj(S shape) throws ShapeException, SQLException, ConnectionException, CloseException;
 
@@ -50,6 +55,8 @@ public abstract class DAO<S> {
      * @param name the name of the object to delete
      * @throws InvalidNameException if invalid name of the Shape
      * @throws SQLException if error during SQL request
+     * @throws  ConnectionException if error during connection
+     * @throws CloseException if error during closing
      */
     public abstract void deletObj(String name) throws InvalidNameException, SQLException, ConnectionException, CloseException;
 
@@ -69,6 +76,8 @@ public abstract class DAO<S> {
      * @return the updated shape
      * @throws ShapeException if invalid shape
      * @throws SQLException if error during SQL request
+     * @throws  ConnectionException if error during connection
+     * @throws CloseException if error during closing
      */
     public abstract S updateObj(S shape) throws ShapeException, SQLException, ConnectionException, CloseException;
 
@@ -82,9 +91,20 @@ public abstract class DAO<S> {
      * @throws RadiusException if error during construction of the circle
      * @throws DimensionException if error during contsruction of the rectangle
      * @throws SizeException if erro rduring constrcution of the square
+     * @throws  ConnectionException if error during connection
+     * @throws CloseException if error during closing
      */
     public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException, ConnectionException, CloseException;
 
+    /**
+     * test the type of a shape
+     * @param name name of the shape
+     * @return true if the shape is this type, false if not
+     * @throws SQLException if error during SQL request
+     * @throws ShapeException if invalid shape
+     * @throws ConnectionException if error during connection
+     * @throws CloseException if error during closing
+     */
     public abstract boolean inBase(String name) throws SQLException, ShapeException, ConnectionException, CloseException;
 
 }

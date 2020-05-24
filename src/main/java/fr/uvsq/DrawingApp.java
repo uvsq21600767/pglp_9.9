@@ -15,7 +15,7 @@ public class DrawingApp {
             input = sc.nextLine();
             try{
                 tui.nextCommand(input).execute(input);
-            } catch (WrongArgumentNumber | SQLException e ) {
+            } catch (SQLException | DrawingException e) {
                 System.out.println(e.getMessage());
             }
         } while(!(input.equals("exit")));

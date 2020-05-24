@@ -74,4 +74,11 @@ public class CircleTest {
     public void TestisEqualException() throws RadiusException, EmptyObjectException {
         c.isEqual(null);
     }
+
+    @Test
+    public void testPrint() {
+        Circle c2 = new Circle();
+        c2.print();
+        assertTrue(true);
+    }
 }

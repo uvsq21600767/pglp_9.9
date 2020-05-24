@@ -76,4 +76,15 @@ public class Point {
             return true;
         }
     }
+
+    /**
+     * toString
+     * @return the string for the class
+     */
+    @Override
+    public String toString() {
+        String str = "";
+        str += "x : " + this.getX() + " y : " + this.getY();
+        return str;
+    }
 }

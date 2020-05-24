@@ -77,4 +77,11 @@ public class SquareTest {
 
         assertTrue(s.isEqual(s2));
     }
+
+    @Test
+    public void testPrint() {
+        Square s2 = new Square();
+        s2.print();
+        assertTrue(true);
+    }
 }

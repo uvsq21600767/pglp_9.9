@@ -108,6 +108,20 @@ public class Square implements Shape {
         this.bl.setY(this.bl.getY() + y);
     }
 
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Name : " + this.getName() + " Bottom Left Point(" + this.getBl().getX() + "," + this.getBl().getY() + ") Size : " + this.getSize();
+        return str;
+    }
+    /**
+     * print the Shape
+     */
+    @Override
+    public void print() {
+        System.out.println(this.toString());
+    }
+
     public boolean isEqual(Square comp) throws EmptyObjectException {
         if(comp == null) {
             throw new EmptyObjectException();

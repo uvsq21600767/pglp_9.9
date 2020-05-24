@@ -99,6 +99,9 @@ public class TriangleDAO extends DAO<Triangle> {
             sta = this.connection.prepareStatement("DELETE FROM SHAPE WHERE Name = ?");
             sta.setString(1, name);
             sta.execute();
+            sta = this.connection.prepareStatement("DELETE FROM GROUPSHAPE WHERE NameS = ?");
+            sta.setString(1, name);
+            sta.execute();
         } catch (SQLException e) {
             System.out.println("Failed sql request");
             e.printStackTrace();
@@ -198,6 +201,37 @@ public class TriangleDAO extends DAO<Triangle> {
 
         this.closeConn();
         return shape;
+    }
+
+    @Override
+    public boolean inBase(String name) throws SQLException, ShapeException {
+        this.connect();
+        PreparedStatement sta;
+        ResultSet res;
+
+        try{
+            sta = this.connection.prepareStatement("SELECT * FROM SHAPE WHERE Name = ?");
+            sta.setString(1, name);
+            sta.execute();
+            res = sta.getResultSet();
+            String str = "";
+
+            if(res.next()) {
+                str += res.getObject("p2x");
+                if(str == null) {
+                    this.closeConn();
+                    return false;
+                }
+            } else {
+                this.closeConn();
+                return false;
+            }
+        } catch (SQLException e) {
+            this.closeConn();
+            throw new SQLException();
+        }
+        this.closeConn();
+        return true;
     }
 
 }

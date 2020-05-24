@@ -137,6 +137,23 @@ public class Triangle implements Shape {
         this.p3.setY(this.p3.getY() + y);
     }
 
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Name : " + this.getName()
+                + " P1(" + this.getP1().getX() + "," + this.getP1().getY() + ")"
+                + " P2(" + this.getP2().getX() + "," + this.getP2().getY() + ")"
+                + " P3(" + this.getP3().getX() + "," + this.getP3().getY() + ")";
+        return str;
+    }
+    /**
+     * print the Shape
+     */
+    @Override
+    public void print() {
+        System.out.println(this.toString());
+    }
+
     /**
      * Test if two traingle are equals
      * @param comp : the comparison Traignale

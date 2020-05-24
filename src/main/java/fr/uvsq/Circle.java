@@ -108,6 +108,22 @@ public class Circle implements Shape {
     }
 
     /**
+     * print the Shape
+     */
+    @Override
+    public void print() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Name : " + this.getName() + " Center(" + this.getCenter().getX() + "," + this.getCenter().getY() + ") "
+                + "Radius : " + this.getRadius();
+        return str;
+    }
+
+    /**
      * Test if two circles are at the same position and have the same radius
      * @param comp : the comparison circle
      * @return true if the 2 circles have the same position and the same radius, false if not

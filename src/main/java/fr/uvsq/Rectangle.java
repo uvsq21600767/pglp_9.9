@@ -129,6 +129,21 @@ public class Rectangle implements Shape {
         this.bl.setY(this.bl.getY() + y);
     }
 
+    @Override
+    public String toString() {
+        String str = "";
+        str += "Name : " + this.getName() + " "
+                + "Bottom Left Point (" + this.getBl().getX() + "," + this.getBl().getY() + ") L : " + this.getL() + " H : " + this.getL();
+        return str;
+    }
+    /**
+     * print the Shape
+     */
+    @Override
+    public void print() {
+        System.out.println(this.toString());
+    }
+
     public boolean isEqual(Rectangle comp) throws EmptyObjectException {
         if(comp == null) {
             throw new EmptyObjectException();

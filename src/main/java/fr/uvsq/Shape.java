@@ -10,4 +10,9 @@ public interface Shape {
      */
     void translate(int x, int y);
 
+    /**
+     * print the Shape
+     */
+    void print();
+
 }

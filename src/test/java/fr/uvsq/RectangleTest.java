@@ -72,4 +72,11 @@ public class RectangleTest {
     public void TestisEqualEmptyObjectException() throws EmptyObjectException {
         r.isEqual(null);
     }
+
+    @Test
+    public void testPrint() {
+        Rectangle r2 = new Rectangle();
+        r2.print();
+        assertTrue(true);
+    }
 }

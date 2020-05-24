@@ -29,6 +29,17 @@ public class CompositeShape implements Shape {
     }
 
     /**
+     * print the Shape
+     */
+    @Override
+    public void print() {
+        System.out.println("Name : " + this.getName());
+        for (Shape shapes : childShape) {
+            shapes.print();
+        }
+    }
+
+    /**
      * Getter of childShape
      * @return this.childShape
      */

@@ -233,4 +233,9 @@ public class CompositeShapeDAO extends DAO<CompositeShape> {
         return comp;
     }
 
+    @Override
+    public boolean inBase(String name) throws SQLException, ShapeException {
+        return false;
+    }
+
 }

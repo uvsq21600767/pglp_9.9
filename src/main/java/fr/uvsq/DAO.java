@@ -85,4 +85,6 @@ public abstract class DAO<S> {
      */
     public abstract S searchObj(String name) throws InvalidNameException, SQLException, EmptyObjectException, RadiusException, DimensionException, SizeException;
 
+    public abstract boolean inBase(String name) throws SQLException, ShapeException;
+
 }

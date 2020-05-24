@@ -81,4 +81,11 @@ public class TriangleTest {
     public void TestisEqualEmptyObjectException() throws EmptyObjectException{
         t.isEqual(null);
     }
+
+    @Test
+    public void testPrint() {
+        Triangle t2 = new Triangle();
+        t2.print();
+        assertTrue(true);
+    }
 }
